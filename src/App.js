@@ -1,38 +1,33 @@
 import React, { useState, useEffect, useRef } from "react";
-import Axis from "./components/axis";
+import ScatterPlot from "./components/axis";
+import Button from "./components/Button.tsx";
 
 function App() {
-  const containerRef = useRef(null);
-  const [scale, setScale] = useState(1);
-  const [axisSize, setAxisSize] = useState({ width: 0, height: 0 });
-
-  useEffect(() => {
-    const handleResize = () => {
-      const containerWidth = containerRef.current.clientWidth;
-      const containerHeight = containerRef.current.clientHeight;
-      const scaleWidth = window.innerWidth / containerWidth;
-      const scaleHeight = window.innerHeight / containerHeight;
-      const newScale = Math.min(scaleWidth, scaleHeight);
-
-      setScale(newScale);
-      setAxisSize({ width: containerWidth, height: containerHeight });
-    };
-
-    handleResize();
-
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
   return (
-    <div
-      ref={containerRef}
-      style={{ width: "100%", height: "100%", position: "fixed" }}
-    >
-      <Axis scale={scale} width={axisSize.width} height={axisSize.height} />
+    <div>
+      <div
+        style={{ width: "100%", height: "100%", position: "fixed" }}
+      >
+          <ScatterPlot />
+      </div>
+
+      <div style={{ position: "absolute", margin: "20px" }}>
+        <Button
+          width="50px"
+          height="50px"
+          fontSize="30px"
+        >
+          ➕
+        </Button>
+        <div style={{ margin: "5px" }}></div>
+        <Button
+          width="50px"
+          height="50px"
+          fontSize="30px"
+        >
+          📝
+        </Button>
+      </div>
     </div>
   );
 }
