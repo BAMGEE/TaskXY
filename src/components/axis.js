@@ -84,7 +84,16 @@ const ScatterPlot = () => {
                     cy={centerY - node.y * scaleY}
                     r={hovering === node.id ? 10 : 5}
                     fill={hovering === node.id ? 'green' : 'steelblue'}
-                    onMouseEnter={(e) => handleNodeHover(node.id, e)}
+                    onMouseEnter={(e) => {
+                        const content = (
+                            <div>
+                                업무명: {node.name}
+                                <br />
+                                마감일: {node.end_date}
+                            </div>
+                        );
+                        handleNodeHover(content, e);
+                    }}
                     onMouseLeave={handleNodeLeave}
                 />
             ))}

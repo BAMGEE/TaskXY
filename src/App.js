@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import ScatterPlot from "./components/axis";
+import taskAdd from "./components/taskAdd";
+import taskList from "./components/taskList";
 import Button from "./components/Button.tsx";
 
 function App() {
