@@ -1,6 +1,6 @@
 import React, {ReactElement, ReactNode} from "react";
 import styled, { css } from "styled-components";
-import { palette, PaletteKeyTypes } from "./palette.js";
+import { palette, PaletteKeyTypes } from "./palette";
 
 interface ButtonStyle {
     width?: string;

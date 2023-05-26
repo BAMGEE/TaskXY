@@ -13,18 +13,17 @@ const ScatterPlot = () => {
     const yMin = -100;
     const yMax = 100;
 
+    const handleResize = () => {
+        setChartWidth(window.innerWidth);
+        setChartHeight(window.innerHeight);
+    }
     useEffect(() => {
-        const handleResize = () => {
-            setChartWidth(window.innerWidth);
-            setChartHeight(window.innerHeight);
-    };
+        window.addEventListener('resize', handleResize);
 
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
+        return () => {
+          window.removeEventListener('resize', handleResize);
+        }
+    }, []);
 
     const centerX = chartWidth / 2;
     const centerY = chartHeight / 2;
@@ -52,12 +51,12 @@ const ScatterPlot = () => {
                     strokeWidth={3}
                 />
                 <text
-                    x={centerX - 30}
-                    y={50}
+                    x={chartWidth - margin}
+                    y={centerY + 30}
                     textAnchor="middle"
                     fontSize={12}
                 >
-                난이도
+                중요도
             </text>
             {/* Draw axis-Y */}
                 <line
@@ -69,12 +68,12 @@ const ScatterPlot = () => {
                     strokeWidth={3}
                 />
                 <text
-                    x={chartWidth - margin}
-                    y={centerY + 30}
+                    x={centerX - 30}
+                    y={50}
                     textAnchor="middle"
                     fontSize={12}
                 >
-                중요도
+                난이도
             </text>
             {/* Draw data nodes */}
             {data.map(node => (
@@ -82,18 +81,9 @@ const ScatterPlot = () => {
                     key={node.id}
                     cx={centerX + node.x * scaleX}
                     cy={centerY - node.y * scaleY}
-                    r={hovering === node.id ? 10 : 5}
-                    fill={hovering === node.id ? 'green' : 'steelblue'}
-                    onMouseEnter={(e) => {
-                        const content = (
-                            <div>
-                                업무명: {node.name}
-                                <br />
-                                마감일: {node.end_date}
-                            </div>
-                        );
-                        handleNodeHover(content, e);
-                    }}
+                    r={hovering === node.name ? 10 : 5}
+                    fill={hovering === node.name ? 'green' : 'steelblue'}
+                    onMouseEnter={(e) => handleNodeHover(node.name, e)}
                     onMouseLeave={handleNodeLeave}
                 />
             ))}
