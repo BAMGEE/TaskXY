@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import data from '../scatterPlot.json';
+import data from '../tasks.json';
 
-const ScatterPlot = () => {
+const Axis = () => {
     const [chartWidth, setChartWidth] = useState(window.innerWidth);
     const [chartHeight, setChartHeight] = useState(window.innerHeight);
     const [hovering, setHovering] = useState(null);
@@ -101,4 +101,4 @@ const ScatterPlot = () => {
     );
 };
 
-export default ScatterPlot;
+export default Axis;
