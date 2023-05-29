@@ -31,7 +31,6 @@ function App() {
         </Button>
         {isInputModalActive && (
             <Modal 
-              modal={isInputModalActive}
               setModal={setInputIsModalActive}
               canvasExit={canvasExitValue}
               width="500"
@@ -56,7 +55,6 @@ function App() {
         </Button>
         {isViewModalActive && (
           <Modal
-              modal={isViewModalActive}
               setModal={setViewIsModalActive}
               canvasExit={canvasExitValue}
               width="500"
